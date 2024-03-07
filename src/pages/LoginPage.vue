@@ -1,5 +1,10 @@
 <script setup>
 import { ref } from "vue"
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "@/firebase";
 
 const emits = defineEmits(['hide-login']);
 
@@ -7,10 +12,21 @@ const email = ref();
 const password = ref();
 
 async function login() {
-
+    try {
+        await signInWithEmailAndPassword(auth, email.value, password.value);
+        emits("hide-login")
+    } catch (e) {
+        alert('Ocurrió un error ${e.message}');
+    }
 }
 
 async function signup() {
+    try {
+        await createUserWithEmailAndPassword(auth, email.value, password.value);
+        alert("Cuenta creada exitosamente");
+    } catch (e) {
+        alert(`${e.message}`);
+    }
 }
 </script>
 

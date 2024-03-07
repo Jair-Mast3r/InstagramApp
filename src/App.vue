@@ -1,6 +1,8 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import LoginPage from "./pages/LoginPage.vue"
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase.js"
 
 const isUserAuthenticated = computed(() => user.value !== null);
 const user = ref(null);
