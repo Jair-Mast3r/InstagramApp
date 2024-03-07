@@ -1,20 +1,30 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref, onMounted, computed } from "vue"
+import LoginPage from "./pages/LoginPage.vue"
+
+const isUserAuthenticated = computed(() => user.value !== null);
+const user = ref(null);
+
+onMounted(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser !== null) {
+            user.value = currentUser;
+        } else {
+            user.value = null;
+        }
+    })
+})
+
+const pageShown = ref("about-us");
+
+function changePage(page) {
+    pageShown.value = page;
+}
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <!-- Login -->
+  <LoginPage @hide-login="isUserAuthenticated = false" v-if="isUserAuthenticated === false"/>
 </template>
 
 <style scoped>
