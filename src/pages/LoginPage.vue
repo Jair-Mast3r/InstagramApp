@@ -36,13 +36,10 @@ async function signup() {
         alt="">
         <form @submit.prevent>
             <div>
-                <label for=""></label>
-                <br>
+                <br><br>
                 <input v-model="email" type="text" name="email">
             </div>
             <div>
-                <label for="password"></label>
-                <br>
                 <input v-model="password" type="text" name="password">
             </div>
             <br>

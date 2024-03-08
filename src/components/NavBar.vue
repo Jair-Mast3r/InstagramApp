@@ -13,7 +13,8 @@ async function singingOut() {
     <nav>
         <h2>Instagram</h2>
         <div>
-            <span @click="emits('changePage', 'home')">Casa</span>
+            <span @click="emits('changePage', 'about-us')">Acerca de nosotros</span>
+            <span @click="emits('changePage', 'explore')">Explorar</span>
             <span @click="emits('changePage', 'profile')">Perfil</span>
             <span @click="singingOut">Cerrar sesión</span>
         </div>

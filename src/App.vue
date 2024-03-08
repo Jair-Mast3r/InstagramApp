@@ -2,6 +2,9 @@
 import { ref, onMounted, computed } from "vue"
 import LoginPage from "./pages/LoginPage.vue"
 import NavBar from "./components/NavBar.vue"
+import AboutUs from "./pages/AboutUs.vue";
+import ExplorePage from "./pages/ExplorePage.vue";
+import ProfilePage from "./pages/ProfilePage.vue";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase.js"
 
@@ -34,13 +37,13 @@ function changePage(page) {
     <!-- Navbar -->
     <NavBar @change-page="changePage" @hide-login="isUserAuthenticated = true" />
     <!-- Páginas-->
-    <section class="about-us-container" v-if="pageShown === 'home'">
-      <Home v-if="pageShown === 'home'" @hide-login="isUserAuthenticated = true" />
-    </section>
+    <section class="about-us-container" v-if="pageShown === 'about-us'">
+            <AboutUs v-if="pageShown === 'about-us'" @hide-login="isUserAuthenticated = true"/>
+        </section>
+        
+        <ExplorePage v-if="pageShown === 'explore'" @hide-login="isUserAuthenticated = true"/>
 
-    <section>
-      <Profile v-if="pageShown === 'profile'" @hide-login="isUserAuthenticated = true" />
-    </section>
+        <ProfilePage v-if="pageShown === 'profile'" @hide-login="isUserAuthenticated = true"/>
 
   </div>
 </template>
